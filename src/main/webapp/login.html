@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="icon/favicon.ico">
+    <title>论坛</title>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/init-top.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+    <script src="js/main.min.js"></script>
+    <script  type="text/javascript">
+        $(function () {
+        });
+    </script>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home_page.html">School BBS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">#</a></li>
+                <li><a href="#">#</a></li>
+                <li><a href="info.html">个人资料</a></li>
+                <li><a href="login.html">登录</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="container top">
+
+    <div class="logo">
+        <img src="img/logo.png" alt="">
+        <a href=""></a>
+    </div>
+
+    <div id="main">
+        <div class="row clearfix">
+                <div class="col-md-4 column">
+                </div>
+                <div class="col-md-5 column">
+                    <div id="login-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="name" value="用户名 / 昵称" data-toggle="tooltip"
+                                           title="可使用用户名或者昵称登录"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="password" value="******" data-toggle="tooltip"
+                                           title="请输入6位-16位密码"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" />记住密码</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-success">登录</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-info" id="btn-regist">注册</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="regist-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="name" value="用户名" data-toggle="tooltip"
+                                           title="用户名可以作为登录名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="password" value="昵称" data-toggle="tooltip"
+                                           title="昵称可以作为登录名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="password" value="******" data-toggle="tooltip"
+                                           title="请输入6位-16位的密码"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" name="password" value="******" data-toggle="tooltip"
+                                           title="请再次输入相同的密码"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" name="password" value="邮箱" data-toggle="tooltip"
+                                           title="请输入邮箱"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-success">注册</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="button" class="btn btn-info" id="btn-return">返回</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="message" class="alert alert-warning">
+                        <a href="#" class="close" data-dismiss="alert">&times;</a>
+                        <strong>密码错误！</strong>
+                    </div>
+                </div>
+                <div class="col-md-3 right-side">
+                    <div class="clear"></div>
+                    <div class="btn-wrap">
+                        <a href="release.html" class="btn-theme"><span>&#xe900;</span> 发表主题</a>
+                    </div>
+                    <div class="hot-wrap">
+                        <div class="title">热帖榜</div>
+                        <ul class="ul-hot">
+                            <li><a href="#">西铁城光动能男表BM8475-26E开箱</a></li>
+                            <li><a href="#">大婶爱数码，2013年度数码历历数~</a></li>
+                            <li><a href="#">小米移动电源的宿敌？ -- AIKa 锋芒</a></li>
+                            <li><a href="#">标记你的生活 -- 「Pinco品酷」数字</a></li>
+                            <li><a href="#">不止轻薄！--OZAKI iPhone5S超薄保护套</a></li>
+                            <li><a href="#">搞机历程2013孤独的搞机历程</a></li>
+                            <li><a href="#">居家旅行好帮手——奥睿科多口USB充电器体</a></li>
+                            <li><a href="#">我与插座有个约会——实用插座体验</a></li>
+                        </ul>
+                    </div>
+                    <div class="hot-wrap">
+                        <div class="title">推荐活动</div>
+                        <div class="img-container">
+                            <a href="#"><img src="./img/action.png" width="300" height="184" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function() {
+        //提示工具显示
+        $("[data-toggle='tooltip']").tooltip();
+        //弹出提示框
+        $(".close").click(function(){
+            $("#message").alert();
+        });
+
+        $("#btn-regist").click(function () {
+            $("#login-body").slideUp(200, function () {
+                $("#login-body").hide();
+                $("#regist-body").show();
+            });
+        });
+        $("#btn-return").click(function () {
+            $("#regist-body").slideUp(200, function () {
+                $("#regist-body").hide();
+                $("#login-body").show();
+            });
+        });
+        $(":input").not(":input[type=submit],:input[type=button]").focus(function(){
+            if($(this).val() ==this.defaultValue){
+                $(this).val("");
+            }
+            $(".close").click();
+        }).blur(function(){
+            if ($(this).val() == "") {
+                $(this).val(this.defaultValue);
+            }
+            $(".close").click();
+        });
+    });
+</script>
+</body>
+</html>

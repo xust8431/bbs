@@ -1,0 +1,10 @@
+.vote-count:hover {
+  background-color: #d876ff;
+}
+
+.vote-count {
+  background-color: #eddbff;
+  padding: 5px;
+  border: 3px solid #fff;
+  border-radius: 15px;
+}
