@@ -1,0 +1,82 @@
+.list {
+    width: 100%;
+    margin-top: 30px;
+    float: left;
+    max-height: 630px;
+    overflow: auto;
+}
+.list>a {
+    font-weight: bold;
+}
+.list span {
+    float: right;
+    display: block;
+}
+.wind {
+    width: 100%;
+    margin-top: 30px;
+    float: right;
+    height: 500px;
+    display: none;
+}
+#chat {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    text-align: left;
+}
+#chat li {
+    margin: 8px;
+}
+.wind .panel-body {
+    height: 460px;
+    background-color: #ccffcc;
+}
+.wind .panel-title {
+    font-weight: bold;
+    color: #5bc0de;
+}
+.wind .editer {
+    width: 100%;
+}
+.wind .editer textarea {
+    width: 100%;
+    padding: 5px;
+    border: 8px solid #deffd6;
+    background-color: #f1fffd;
+    overflow: auto;
+    resize: none;
+}
+.wind  .panel-heading button {
+    float: right;
+}
+
+.editer .submit-comment {
+    float: right;
+    width: 10%;
+    height: 32px;
+    line-height: 32px;
+    color: #333;
+    background: #fed100;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+}
+.editer .submit-comment:active {
+    -moz-box-shadow: 0px 0px 30px #cda600 inset;
+    -webkit-box-shadow: 0px 0px 30px #cda600 inset;
+    box-shadow: 0px 0px 30px #cda600 inset;
+    -webkit-transition: all 0s ease-in-out;
+    -moz-transition: all 0s ease-in-out;
+    -o-transition: all 0s ease-in-out;
+    transition: all 0s ease-in-out;
+}
+.area-title {
+    width: 100%;
+    text-align: left;
+    font-style: 16px;
+    color: #b8b8b8;
+    padding-bottom: 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+}
