@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xust.bbs.entity.Reply" table="reply">
+		<id name="replyId" type="string" column="reply_id">
+		</id>
+		<property name="postId" type="string" column="post_id">
+		</property>
+		<property name="userName" type="string" column="user_name">
+		</property>
+		<property name="replyText" type="string" column="reply_text">
+		</property>
+		<property name="replyUp" type="long" column="reply_up">
+		</property>
+		<property name="replyTime" type="java.sql.Timestamp" column="reply_time">
+		</property>
+	</class>
+</hibernate-mapping>
