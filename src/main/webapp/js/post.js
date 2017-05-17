@@ -1,9 +1,9 @@
 //计算帖子总数
-function count(){
+function count(type){
 	$.ajax({
 		url:path+"/post/count.bbs",
 		type:"post",
-		data:{},
+		data:{"type":type},
 		dataType:"json",
 		success:function(result){
 			if(result.status == 0){
@@ -17,12 +17,12 @@ function count(){
 	});
 }
 
-//加载帖子列表
-function loadPost(offset){
+//按类型显示帖子列表
+function typeListPost(offset,type){
 	$.ajax({
-		url:path+"/post/list.bbs",
+		url:path+"/post/typeList.bbs",
 		type:"post",
-		data:{"offset":offset},
+		data:{"offset":offset,"type":type},
 		dataType:"json",
 		success:function(result){
 			if(result.status == 0){
@@ -35,19 +35,7 @@ function loadPost(offset){
 					var content = posts[i].content;
 					var up = posts[i].up;
 					var replyNumber = posts[i].replyNumber;
-					var sli = "";
-					sli += '<li>';
-					sli += ' <img src="./img/hico02.gif" width="50" height="50" alt="">';
-					sli += ' <div class="main-ul-contant">';
-					sli += '   <h3><a href="#">'+title+'</a></h3>';
-					sli += '    <textarea rows="1">'+content+'</textarea>';
-					sli += ' </div>';
-					sli += ' <div class="tag-talk" title="顶"><span>&#xe904;</span> '+up+'</div>';
-					sli += ' <div class="tag-talk" title="回复数"><span>&#xe903;</span> '+replyNumber+'</div>';
-					sli += '</li>';
-					var $li = $(sli);
-					$li.data("postId",postId);
-					$(".main-ul").append($li);
+					postList(postId,title,content,up,replyNumber,picture);
 				}
 			}
 		},
@@ -55,4 +43,21 @@ function loadPost(offset){
 			alert("列表显示失败");
 		}
 	});
+}
+
+//拼接post列表
+function postList(postId,title,content,up,replyNumber,picture){
+	var sli = "";
+	sli += '<li>';
+	sli += ' <img src="./img/hico02.gif" width="50" height="50" alt="">';
+	sli += ' <div class="main-ul-contant">';
+	sli += '   <h3><a href="#">'+title+'</a></h3>';
+	sli += '    <textarea rows="1">'+content+'</textarea>';
+	sli += ' </div>';
+	sli += ' <div class="tag-talk" title="顶"><span>&#xe904;</span> '+up+'</div>';
+	sli += ' <div class="tag-talk" title="回复数"><span>&#xe903;</span> '+replyNumber+'</div>';
+	sli += '</li>';
+	var $li = $(sli);
+	$li.data("postId",postId);
+	$(".main-ul").append($li);
 }

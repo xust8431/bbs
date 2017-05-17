@@ -13,6 +13,10 @@ public interface PostDao {
 	 */
 	public int count();
 	/**
+	 * 查询其他类型帖子的数量
+	 */
+	public int otherTypeCount(String type);
+	/**
 	 * 分页查询
 	 * @param offset 初始位置
 	 * @param length 每页显示数量

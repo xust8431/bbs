@@ -15,12 +15,12 @@ public class CountPostAction {
 		//输出
 		private BBSResult<Integer> result;
 		//接收
-		
+		private String type;
 		@Resource
 		private PostService postService;
 		
 		public String execute(){
-			result = postService.countPost();
+			result = postService.countPost(type);
 			return "success";
 		}
 
@@ -31,4 +31,14 @@ public class CountPostAction {
 		public void setResult(BBSResult<Integer> result) {
 			this.result = result;
 		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+		
+		
 }

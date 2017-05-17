@@ -27,6 +27,11 @@ public class PostDaoImpl implements PostDao{
 		return count.intValue();
 	}
 	
+	public int otherTypeCount(String type) {
+		String hql = "select count(*) from Post as post where post_type = ?";
+		Number count = (Number)template.find(hql,type).listIterator().next();
+		return count.intValue();
+	}
 	
 	public List<Post> findAll(final int offset, final int length) {
 		final String hql = "from Post order by post_last_reply_time desc";

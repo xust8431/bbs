@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.xust.bbs.dao.post.PostDao;
 import com.xust.bbs.entity.Post;
 import com.xust.bbs.service.post.PostService;
+import com.xust.bbs.util.BBSResult;
 
 import test.BaseTest;
 
@@ -36,5 +37,24 @@ public class TestCase extends BaseTest{
 		for(Post post : list){
 			System.out.println(post.getTitle());
 		}
+	}
+	
+	@Test
+	public void test3(){
+		List<Post> list = postDao.findForType(0, 10, "2");
+		for(Post post : list){
+			System.out.println(post.getTitle());
+		}
+	}
+	
+	@Test
+	public void test4(){
+		int rows = postDao.otherTypeCount("0");
+		System.out.println(rows);
+	}
+	@Test
+	public void test5(){
+		BBSResult<Integer> result = postService.countPost("1");
+		System.out.println(result.getData());
 	}
 }

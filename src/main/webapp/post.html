@@ -21,20 +21,57 @@
     <script type="text/javascript" src="js/cookie_util.js"></script>
     <script type="text/javascript" src="js/post.js"></script>
     <script  type="text/javascript">
-    	var offset;
+    	var offset = 0;
+    	var type = 0;
 	    function get_page(t) {
 			offset = Number($(t).html());
-			console.log(offset);
+			
 			if(offset == 1){
-				loadPost(0);
+				typeListPost((offset - 1),type);
 			}else{
-			  loadPost((offset - 1)*20 + 1);
+				typeListPost(((offset - 1)*20 + 1),type);
+				//console.log((offset - 1)*20 + 1);
+				//console.log("+++++++++++++++++=");
 			}
 		}
+	    function reduce_page() {
+	    	offset = offset - 1;
+	    	if(offset == 0){
+	    		alert("已经是第一页啦!");
+	    		return;
+	    	}
+	    	if(offset == 1){
+	    		typeListPost((offset - 1),type);
+			}else{
+				typeListPost(((offset - 1)*20),type);
+			}
+	    	//console.log(offset);
+	    }
+	    function add_page() {
+	    	offset = offset + 1;
+	    	typeListPost(((offset - 1)*20),type);
+	    }
+	    function allPost(){
+	    	type = $("#all").attr("value");
+	    	//console.log(type);
+	    	count(type)
+	    	typeListPost(offset,type);
+	    }
+	    function discussPost(){
+	    	type = $("#discuss").attr("value");
+	    	count(type)
+	    	typeListPost(offset,type);
+	    }
+	    function sharePost(){
+	    	type = $("#share").attr("value");
+	    	count(type)
+	    	typeListPost(offset,type);
+	    }
         $(function () {
-        	count();
-        	loadPost(0);
-        	
+        	//count();
+        	//loadPost(0);
+        	typeListPost(offset,type);
+        	count(type)
         });
     </script>
     <!--[if lt IE 9]>
@@ -90,9 +127,9 @@
                 <div class="main-h1">
                     <h1>论坛列表</h1>
                     <div class="main-h1-nav">
-                        <a href="#" class="active">全部</a>
-                        <a href="#">咨询讨论</a>
-                        <a href="#">经验分享</a>
+                        <a href="javascript:;" onclick="allPost()"  class="active" value="0" id="all">全部<input type="hidden"></a>
+                        <a href="javascript:;" onclick="discussPost()" value="1" id="discuss">咨询讨论</a>
+                        <a href="javascript:;" onclick="sharePost()" value="2" id="share">经验分享</a>
                     </div>
                     <dl>
                         <dd>帖子：<span id="count_span"></span></dd>
@@ -113,14 +150,14 @@
                 </ul>
                 <div class="clear"></div>
                 <div class="page">
-				    <a href="#" class="prev">«</a>
+				    <a href="javascript:;" onclick="reduce_page()" class="prev">«</a>
 				    <a href="javascript:;" onclick="get_page(this)" class="active">1</a>
 				    <a href="javascript:;" onclick="get_page(this)">2</a>
 				    <a href="javascript:;" onclick="get_page(this)">3</a>
 				    <a href="javascript:;" onclick="get_page(this)">4</a>
 				    <a href="javascript:;" onclick="get_page(this)">5</a>
 				    <a href="javascript:;" onclick="get_page(this)">6</a>
-				    <a href="#" class="next">»</a>
+				    <a href="javascript:;" onclick="add_page()" class="next">»</a>
                </div>
             </div>
         </div>

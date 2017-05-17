@@ -21,9 +21,15 @@ public class PostServiceImpl implements PostService{
 	@Resource
 	private PostDao postDao;
 	
-	public BBSResult<Integer> countPost() {
+	public BBSResult<Integer> countPost(String type) {
 		BBSResult<Integer> result = new BBSResult<Integer>();
-		int rows = postDao.count();//总记录数
+		int rows = 0;
+		if(type.equals("0")){
+			rows = postDao.count();//总记录数
+		}else{
+			rows = postDao.otherTypeCount(type);
+		}
+		
 		result.setStatus(0);
 		result.setData(rows);
 		return result;
@@ -69,13 +75,19 @@ public class PostServiceImpl implements PostService{
 	
 	public BBSResult<List<Post>> loadPostForType(int offset, String type) {
 		BBSResult<List<Post>> result = new BBSResult<List<Post>>();
-		List<Post> list = postDao.findForType(offset, 20, type);
+		List<Post> list = null;
+		if(type.equals("0")){
+			list = postDao.findAll(offset, 20);
+			System.out.println("++++");
+		}else{
+			list = postDao.findForType(offset, 20, type);
+		}
 		if(list == null){
 			result.setStatus(1);
 			result.setMsg("帖子列表为空");
 			return result;
 		}
-		
+		//System.out.println(list);
 		result.setStatus(0);
 		result.setData(list);
 		result.setMsg("显示列表成功");
