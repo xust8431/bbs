@@ -70,12 +70,12 @@
 	<package name="reply" namespace="/reply" extends="json-default">
 		<!-- 加载帖子 -->
 		<action name="load" class="loadPostAction" method="execute">
-			<result name="success" type="json">
-				<param name="root">result</param>
+			<result name="success" type="dispatcher">
+				/WEB-INF/reply.jsp
 			</result>
 		</action>
-		<!-- 查询reply总数 -->
-		<action name="count" class="countReplyAction" method="execute">
+		<!-- 添加回复 -->
+		<action name="add" class="addReplyAction" method="execute">
 			<result name="success" type="json">
 				<param name="root">result</param>
 			</result>
