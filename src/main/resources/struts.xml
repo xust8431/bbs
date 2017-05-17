@@ -10,5 +10,81 @@
 	</constant>
 
 	<!-- json-default包在struts2-json-plugin.jar中 -->
-
+	<!-- 用户表 -->
+	<package name="user" namespace="/user" extends="json-default">
+		<!-- name登录 -->
+		<action name="nameLogin" class="userNameLoginAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 注册 -->
+		<action name="regist" class="userRegistAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 帖子表 -->
+	<package name="post" namespace="/post" extends="json-default">
+		<!-- 查询帖子总数 -->
+		<action name="count" class="countPostAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 查询全部帖子 -->
+		<action name="list" class="postListAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 根据帖子类型查询 -->
+		<action name="typeList" class="postTypeListAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 收藏帖子 -->
+		<action name="collect" class="postCollectAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 发表主题 -->
+		<action name="release" class="postReleaseAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 查询热帖 -->
+		<action name="hotList" class="postHotListAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 回复表 -->
+	<package name="reply" namespace="/reply" extends="json-default">
+		<!-- 加载帖子 -->
+		<action name="load" class="loadPostAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 查询reply总数 -->
+		<action name="count" class="countReplyAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		<!-- 加载回复 -->
+		<action name="list" class="replyListAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
 </struts>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.xust.bbs.entity.Post" table="post">
+		<id name="id" type="string" column="post_id"></id>
+		<property name="userName" type="string" column="user_name"></property>
+		<property name="title" type="string" column="post_title"></property>
+		<property name="content" type="string" column="post_content"></property>
+		<property name="picture" type="string" column="post_picture"></property>
+		<property name="up" type="long" column="post_up"></property>
+		<property name="down" type="long" column="post_down"></property>
+		<property name="type" type="string" column="post_type"></property>
+		<property name="classify" type="string" column="post_classify"></property>
+		<property name="createTime" type="timestamp" column="post_create_time"></property>
+		<property name="lastReplyTime" type="timestamp" column="post_last_reply_time"></property>
+		<property name="replyNumber" type="long" column="post_reply_number"></property>
+	</class>
+</hibernate-mapping>

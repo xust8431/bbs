@@ -17,8 +17,57 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
     <script src="js/main.min.js"></script>
+    <script type="text/javascript" src="js/basevalue.js"></script>
+    <script type="text/javascript" src="js/cookie_util.js"></script>
+    <script type="text/javascript" src="js/post.js"></script>
     <script  type="text/javascript">
+	   /* var type;
+		function getValue(value){
+			type = value;
+			console.log(type);
+		};*/
         $(function () {
+        	
+        	$(".submit-comment").click(function(){
+        		var type = $("#select_type option:selected").val();
+            	console.log(type);
+            	var userName = getCookie("userName");
+            	var title = $("#title").val().trim();
+            	var picture = "./img/hico01.gif";
+            	var content = $("#content").val().trim();
+            	//console.log(title+"&&&"+content);
+            	var ok = true;
+            	if(title == null){
+            		alert("标题不能为空");
+            		ok = false;
+            		return;
+            	}
+            	if(content == null){
+            		alert("内容不能为空");
+            		ok = false;
+            		return;
+            	}
+            	if(ok){
+	            	$.ajax({
+	            		url:path+"/post/release.bbs",
+	            		type:"post",
+	            		data:{"userName":userName,"type":type,"title":title,"content":content,"picture":picture},
+	            		dataType:"json",
+	            		success:function(result){
+	            			if(result.status == 0){
+	            				window.location.href="post.html";
+	            				loadPost(0);
+	            				$("#title").val("");
+	            				$("#content").val("");
+	            				$("#upload_file").val("");
+	            			}
+	            		},
+	            		error:function(){
+	            			alert("发表帖子失败")
+	            		}
+	            	});
+            	}
+	        });
         });
     </script>
     <!--[if lt IE 9]>
@@ -76,14 +125,14 @@
                         <h1>发表主题</h1>
                     </div>
                     <div class="post-type"> 主题类型
-                        <select class="btn btn-default">
-                            <option value="默认" class="btn btn-default" selected>默认</option>
-                            <option value="资讯讨论" class="btn btn-default">资讯讨论</option>
-                            <option value="经验分享" class="btn btn-default">经验分享</option>
+                        <select class="btn btn-default" id="select_type">
+                            <option value="0" class="btn btn-default" selected>默认</option>
+                            <option value="1" class="btn btn-default">资讯讨论</option>
+                            <option value="2" class="btn btn-default">经验分享</option>
                         </select>
                     </div>
                     <div class="post-title">
-                        <textarea rows="1"></textarea>
+                        <textarea rows="1" id="title"></textarea>
                     </div>
                     <div class="post-img">
                         <div class="">
@@ -99,9 +148,9 @@
                         </div>
                     </div>
                     <div class="post-content">
-                        <textarea rows="5"></textarea>
+                        <textarea rows="5" id="content"></textarea>
                     </div>
-                    <input type="submit" value="发表回复" class="submit-comment" />
+                    <input type="button" value="发表回复" class="submit-comment" />
                 </form>
                 <div class="clear"></div>
             </div>

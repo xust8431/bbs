@@ -1,4 +1,4 @@
-ï»¿#message {
+#message {
 	float: left;
 	width: 80%;
 }
@@ -63,7 +63,7 @@
 	color: #7c7c7c;
 }
 #main .right-side .hot-wrap ul.ul-hot li a:before {
-	content: "Â·";
+	content: "¡¤";
 	font-size: 12px;
 	font-weight: bold;
 	margin-right: 5px;

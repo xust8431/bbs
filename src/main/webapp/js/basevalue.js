@@ -1,1 +1,1 @@
-var path = "http://localhost:8888/school_bbs";
+var path = "http://localhost:8888/bbs";
