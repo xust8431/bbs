@@ -29,12 +29,13 @@ function typeListPost(offset,type){
 				var posts = result.data;
 				$(".main-ul li").remove();
 				for(var i=0;i<posts.length;i++){
-					var postId = posts[i].postId;
+					var postId = posts[i].id;
 					var picture = posts[i].picture;
 					var title = posts[i].title;
 					var content = posts[i].content;
 					var up = posts[i].up;
 					var replyNumber = posts[i].replyNumber;
+					//console.log(postId);
 					postList(postId,title,content,up,replyNumber,picture);
 				}
 			}
@@ -44,7 +45,47 @@ function typeListPost(offset,type){
 		}
 	});
 }
-
+//发帖
+function postMessage(){
+	var type = $("#select_type option:selected").val();
+	console.log(type);
+	var userName = getCookie("userName");
+	var title = $("#title").val().trim();
+	var picture = "./img/hico01.gif";
+	var content = $("#content").val().trim();
+	//console.log(title+"&&&"+content);
+	var ok = true;
+	if(title == null){
+		alert("标题不能为空");
+		ok = false;
+		return;
+	}
+	if(content == null){
+		alert("内容不能为空");
+		ok = false;
+		return;
+	}
+	if(ok){
+    	$.ajax({
+    		url:path+"/post/release.bbs",
+    		type:"post",
+    		data:{"userName":userName,"type":type,"title":title,"content":content,"picture":picture},
+    		dataType:"json",
+    		success:function(result){
+    			if(result.status == 0){
+    				window.location.href="post.html";
+    				loadPost(0);
+    				$("#title").val("");
+    				$("#content").val("");
+    				$("#upload_file").val("");
+    			}
+    		},
+    		error:function(){
+    			alert("发表帖子失败")
+    		}
+    	});
+	}
+}
 //拼接post列表
 function postList(postId,title,content,up,replyNumber,picture){
 	var sli = "";

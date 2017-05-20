@@ -23,7 +23,6 @@ public interface PostDao {
 	 * @return 查询到的所有帖子
 	 */
 	public List<Post> findAll(final int offset,final int length);
-	
 	/**
 	 * 发表帖子
 	 * @param post 实体类post对象
@@ -41,4 +40,8 @@ public interface PostDao {
 	 * @return 查询到的所有帖子
 	 */
 	public List<Post> findForType(final int offset,final int length, final String type);
+	/**
+	 * 查询热帖 回复数排名由大到小前十
+	 */
+	public List<Post> findForHot(final int offset,final int length);
 }
