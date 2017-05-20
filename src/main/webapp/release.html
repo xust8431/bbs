@@ -20,6 +20,7 @@
     <script type="text/javascript" src="js/basevalue.js"></script>
     <script type="text/javascript" src="js/cookie_util.js"></script>
     <script type="text/javascript" src="js/post.js"></script>
+    <script type="text/javascript" src="js/hot-wrap.js"></script>
     <script  type="text/javascript">
 	   /* var type;
 		function getValue(value){
@@ -28,46 +29,16 @@
 		};*/
         $(function () {
         	
-        	$(".submit-comment").click(function(){
-        		var type = $("#select_type option:selected").val();
-            	console.log(type);
-            	var userName = getCookie("userName");
-            	var title = $("#title").val().trim();
-            	var picture = "./img/hico01.gif";
-            	var content = $("#content").val().trim();
-            	//console.log(title+"&&&"+content);
-            	var ok = true;
-            	if(title == null){
-            		alert("标题不能为空");
-            		ok = false;
-            		return;
-            	}
-            	if(content == null){
-            		alert("内容不能为空");
-            		ok = false;
-            		return;
-            	}
-            	if(ok){
-	            	$.ajax({
-	            		url:path+"/post/release.bbs",
-	            		type:"post",
-	            		data:{"userName":userName,"type":type,"title":title,"content":content,"picture":picture},
-	            		dataType:"json",
-	            		success:function(result){
-	            			if(result.status == 0){
-	            				window.location.href="post.html";
-	            				loadPost(0);
-	            				$("#title").val("");
-	            				$("#content").val("");
-	            				$("#upload_file").val("");
-	            			}
-	            		},
-	            		error:function(){
-	            			alert("发表帖子失败")
-	            		}
-	            	});
-            	}
-	        });
+        	$(".submit-comment").click(postMessage);
+        	hotWrap();
+        	$(".ul-hot").on("click", "li", function() {
+        		$(".ul-hot a").removeClass("checked");
+				$(this).find("a").addClass("checked");
+				//获取请求参数
+				var postId = $(this).data("postId");
+				console.log(postId);
+				window.location.href = path + "/reply/load.bbs?postId=" + postId;
+        	});
         });
     </script>
     <!--[if lt IE 9]>
@@ -163,14 +134,7 @@
             <div class="hot-wrap">
                 <div class="title">热帖榜</div>
                 <ul class="ul-hot">
-                    <li><a href="#">西铁城光动能男表BM8475-26E开箱</a></li>
-                    <li><a href="#">大婶爱数码，2013年度数码历历数~</a></li>
-                    <li><a href="#">小米移动电源的宿敌？ -- AIKa 锋芒</a></li>
-                    <li><a href="#">标记你的生活 -- 「Pinco品酷」数字</a></li>
-                    <li><a href="#">不止轻薄！--OZAKI iPhone5S超薄保护套</a></li>
-                    <li><a href="#">搞机历程2013孤独的搞机历程</a></li>
-                    <li><a href="#">居家旅行好帮手——奥睿科多口USB充电器体</a></li>
-                    <li><a href="#">我与插座有个约会——实用插座体验</a></li>
+                   
                 </ul>
             </div>
             <div class="hot-wrap">

@@ -78,4 +78,21 @@ public class PostDaoImpl implements PostDao{
 		 return list;
 		
 	}
+	
+	public List<Post> findForHot(final int offset, final int length) {
+		final String hql = "from Post order by post_reply_number desc";
+		@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+		List<Post> list = template.executeFind(
+				new  HibernateCallback() {
+		           public Object doInHibernate(Session session)
+		             throws HibernateException, SQLException {
+		            Query query = session.createQuery(hql);
+		            query.setFirstResult(offset);
+		            query.setMaxResults(length);
+		            List list = query.list();
+		            return list;
+		           }
+		          });
+		 return list;
+	}
 }

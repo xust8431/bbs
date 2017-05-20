@@ -78,7 +78,6 @@ public class PostServiceImpl implements PostService{
 		List<Post> list = null;
 		if(type.equals("0")){
 			list = postDao.findAll(offset, 20);
-			System.out.println("++++");
 		}else{
 			list = postDao.findForType(offset, 20, type);
 		}
@@ -91,6 +90,21 @@ public class PostServiceImpl implements PostService{
 		result.setStatus(0);
 		result.setData(list);
 		result.setMsg("显示列表成功");
+		return result;
+	}
+	
+	public BBSResult<List<Post>> loadPostForHot() {
+		BBSResult<List<Post>> result = new BBSResult<List<Post>>();
+		List<Post> list = postDao.findForHot(0, 10); 
+		if(list == null){
+			result.setMsg("热帖列表为空");
+			result.setStatus(1);
+			return result;
+		}
+		
+		result.setStatus(0);
+		result.setMsg("显示热帖列表成功");
+		result.setData(list);
 		return result;
 	}
 }
