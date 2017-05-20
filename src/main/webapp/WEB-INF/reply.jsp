@@ -22,6 +22,7 @@
     <script type="text/javascript" src="../js/basevalue.js"></script>
     <script type="text/javascript" src="../js/cookie_util.js"></script>
     <script type="text/javascript" src="../js/reply.js"></script>
+    <script type="text/javascript" src="../js/hot-wrap.js"></script>
     <script  type="text/javascript">
         $(function () {
         	//当前的页码
@@ -43,6 +44,8 @@
 			}
 			//点赞
 			$(".comment-ul").on("click", "li .comment-ul-contant .comment-btns a", support);
+			//显示热帖
+			hotWrap();
 			/* ====================================================================================== */
 			
 			//翻页
@@ -232,14 +235,6 @@
             <div class="hot-wrap">
                 <div class="title">热帖榜</div>
                 <ul class="ul-hot">
-                    <li><a href="#">西铁城光动能男表BM8475-26E开箱</a></li>
-                    <li><a href="#">大婶爱数码，2013年度数码历历数~</a></li>
-                    <li><a href="#">小米移动电源的宿敌？ -- AIKa 锋芒</a></li>
-                    <li><a href="#">标记你的生活 -- 「Pinco品酷」数字</a></li>
-                    <li><a href="#">不止轻薄！--OZAKI iPhone5S超薄保护套</a></li>
-                    <li><a href="#">搞机历程2013孤独的搞机历程</a></li>
-                    <li><a href="#">居家旅行好帮手——奥睿科多口USB充电器体</a></li>
-                    <li><a href="#">我与插座有个约会——实用插座体验</a></li>
                 </ul>
             </div>
             <div class="hot-wrap">

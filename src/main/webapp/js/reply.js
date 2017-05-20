@@ -2,7 +2,8 @@
 function support(){
 	//alert("success")
 	var replyId = $(this).parents("li").data("replyId");
-	var supported = getCookie("up" + replyId);
+	var userName = getCookie("userName");
+	var supported = getCookie("up" + replyId + userName);
 	var a = this;
 	//alert(replyId);
 	var ok = true;
@@ -27,7 +28,7 @@ function support(){
 					var upNumber = astr.replace(/[^0-9]/ig,"");
 					var value = parseInt(upNumber, 10) + 1;
 					$(a).html("<span>&#xe904;</span> (" + value + ")");
-					addCookie("up" + replyId, replyId, 24);
+					addCookie("up" + replyId + userName, replyId, 24);
 				}
 			},
 			error : function() {
