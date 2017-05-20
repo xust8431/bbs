@@ -34,5 +34,10 @@ public interface ReplyService {
 	 * @return
 	 */
 	public BBSResult<Object> deleteReply(String postId);
+	/**
+	 * 点赞功能
+	 * @param replyId
+	 * @return
+	 */
 	public BBSResult<Object> supportReply(String replyId);
 }

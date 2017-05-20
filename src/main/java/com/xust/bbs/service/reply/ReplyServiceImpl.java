@@ -52,17 +52,29 @@ public class ReplyServiceImpl implements ReplyService {
 
 	public BBSResult<Object> addReply(String postId, String userName, String replyText) {
 		BBSResult<Object> result = new BBSResult<Object>();
-		Reply reply = new Reply();
-		reply.setReplyId(BBSUtil.createId());
-		reply.setPostId(postId);
-		reply.setUserName(userName);
-		reply.setReplyText(replyText);
-		reply.setReplyUp(0);
-		Timestamp time = new Timestamp(System.currentTimeMillis());
-		reply.setReplyTime(time);
-		replyDao.save(reply);
-		result.setStatus(0);
-		result.setMsg("回复成功");
+		List<Post> posts = postDao.findByPostId(postId);
+		if(posts != null) {
+			Post post = posts.get(0);
+			//post表回复数+1
+			long replyNumber = post.getReplyNumber();
+			post.setReplyNumber(replyNumber + 1);
+			postDao.update(post);
+			//添加回复至reply表
+			Reply reply = new Reply();
+			reply.setReplyId(BBSUtil.createId());
+			reply.setPostId(postId);
+			reply.setUserName(userName);
+			reply.setReplyText(replyText);
+			reply.setReplyUp(0);
+			Timestamp time = new Timestamp(System.currentTimeMillis());
+			reply.setReplyTime(time);
+			replyDao.save(reply);
+			result.setStatus(0);
+			result.setMsg("回复成功");
+			return result;
+		}
+		result.setStatus(1);
+		result.setMsg("回复失败");
 		return result;
 	}
 

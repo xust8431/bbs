@@ -44,4 +44,9 @@ public interface PostDao {
 	 * 查询热帖 回复数排名由大到小前十
 	 */
 	public List<Post> findForHot(final int offset,final int length);
+	/**
+	 * 更新post
+	 * @param post
+	 */
+	public void update(Post post);
 }
