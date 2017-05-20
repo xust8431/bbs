@@ -39,7 +39,7 @@ function support(){
 }
 
 //添加回复
-function addReply(postId, userName) {
+function addReply(postId, userName, page) {
 	var replyText = $("#replyText").val();
 	//alert(replyText);
 	var ok = true;
@@ -62,7 +62,7 @@ function addReply(postId, userName) {
 			success : function(result) {
 				if(result.status == 0) {
 					var replyText = $("#replyText").val("");
-					loadReplys(postId, 1);
+					loadReplys(postId, page);
 				} else {
 					alert(result.msg);
 				}
@@ -120,6 +120,7 @@ function loadReplys(postId, page) {
              		$li.data("replyId", replyId);
 					$(".comment-ul").append($li);
 				}
+				$('body').animate( {scrollTop: 200}, 500);
 			}
 		},
 		error : function() {

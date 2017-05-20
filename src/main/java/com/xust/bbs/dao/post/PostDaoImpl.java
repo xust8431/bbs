@@ -78,4 +78,8 @@ public class PostDaoImpl implements PostDao{
 		 return list;
 		
 	}
+
+	public void update(Post post) {
+		template.update(post);
+	}
 }

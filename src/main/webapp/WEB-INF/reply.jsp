@@ -27,6 +27,8 @@
         	//当前的页码
         	var page = 1;
         	var postId = $("#post-id").val();
+        	var replyNumber = $("#reply-num").val();
+        	var replyPage = parseInt(parseInt(replyNumber, 10) / 20 + 1, 10);
         	//登陆后显示登录名
 			var userName = getCookie("userName");
 			if(userName != null) {
@@ -37,13 +39,70 @@
 			//添加回复
 			$(".submit-comment").click(toAddReply);
 			function toAddReply() {
-				addReply(postId, userName);
+				addReply(postId, userName, page);
 			}
 			//点赞
 			$(".comment-ul").on("click", "li .comment-ul-contant .comment-btns a", support);
 			/* ====================================================================================== */
 			
-			
+			//翻页
+			$(".page a").click(function() {
+				//alert($(this).html());
+				var value = $(this).html();
+				if(value == "&lt;") {
+					if(page > 1) {
+						page -= 1;
+						var $a = $(".page a.active");
+						$(".page a").removeClass("active");
+						$a.prev().addClass("active");
+						loadReplys(postId, page);
+					}
+				} else if(value == "&gt;") {
+					if(page < replyPage) {
+						page += 1;
+						var $a = $(".page a.active");
+						$(".page a").removeClass("active");
+						$a.next().addClass("active");
+						loadReplys(postId, page);
+					} else {
+						alert("已经是最后一页啦");
+					}
+				} else {
+					page = value;
+					$(".page a").removeClass("active");
+					$(this).addClass("active");
+					loadReplys(postId, page);
+				}
+				
+				if(page < replyPage) {
+					var last = $(".page a:last").prev().html();
+					if(page == last) {
+						var a = $(".page").find("a");
+						for(var i = 1; i < a.length-1; i++) {
+							var $a = $(a[i]);
+							var number = parseInt($a.html(), 10);
+							$a.html(number+1);
+						}
+						$(".page a").removeClass("active");
+						$(".page a:last").prev().prev().addClass("active");
+					}
+				}
+				
+				if(page > 1) {
+					var first = $(".page a:first").next().html();
+					if(page == first) {
+						var a = $(".page").find("a");
+						for(var i = 1; i < a.length-1; i++) {
+							var $a = $(a[i]);
+							var number = parseInt($a.html(), 10);
+							$a.html(number-1);
+						}
+						$(".page a").removeClass("active");
+						$(".page a:first").next().next().addClass("active");
+					}
+				}
+				
+			});
 			
 			/* ====================================================================================== */
         });
@@ -102,6 +161,7 @@
                     <li><a href="../post.html">论坛</a></li>
                     <li class="active">${result.data.title }</li>
                     <input type="hidden" id="post-id" value="${result.data.id }" />
+                    <input type="hidden" id="reply-num" value="${result.data.replyNumber }" />
                 </ol>
                 <ul class="main-ul" style="margin-top:0px;">
                     <li>
@@ -143,14 +203,14 @@
                     </li>
                 </ul>
                 <div class="page">
-                    <a href="#" class="prev">&lt;</a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#" class="next">&gt;</a>
+                    <a href="javascript:;" class="prev">&lt;</a>
+                    <a href="javascript:;" class="active">1</a>
+                    <a href="javascript:;">2</a>
+                    <a href="javascript:;">3</a>
+                    <a href="javascript:;">4</a>
+                    <a href="javascript:;">5</a>
+                    <a href="javascript:;">6</a>
+                    <a href="javascript:;" class="next">&gt;</a>
                 </div>
             </div>
             <div class="comment-container">

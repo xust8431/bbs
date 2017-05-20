@@ -41,4 +41,9 @@ public interface PostDao {
 	 * @return 查询到的所有帖子
 	 */
 	public List<Post> findForType(final int offset,final int length, final String type);
+	/**
+	 * 更新post
+	 * @param post
+	 */
+	public void update(Post post);
 }
