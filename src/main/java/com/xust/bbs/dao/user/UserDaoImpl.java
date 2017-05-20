@@ -35,4 +35,20 @@ public class UserDaoImpl implements UserDao{
 	public void addUser(User user) {
 		template.save(user);
 	}
+	
+	/**
+	 * 查看用户信息
+	 */
+	public List<User> findByUserId(String userId) {
+		String hql = "from User where user_id = ?";
+		List<User> user = template.find(hql,userId);
+		return user;
+	}
+	
+	/**
+	 * 修改用户信息
+	 */
+	public void update(User user) {
+		template.merge(user);
+	}
 }

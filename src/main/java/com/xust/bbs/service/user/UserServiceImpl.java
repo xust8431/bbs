@@ -78,4 +78,54 @@ public class UserServiceImpl implements UserService{
 		result.setData(user);
 		return result;
 	}
+	
+	public BBSResult<List<User>> loadUserMsg(String userId) {
+		BBSResult<List<User>> result = new BBSResult<List<User>>();
+		List<User> user = userDao.findByUserId(userId);
+		result.setStatus(0);
+		result.setMsg("显示用户信息成功");
+		result.setData(user);
+		return result;
+	}
+	
+	public BBSResult<Object> updateUserMsg(
+			String picture, String password, String nick, String email, String userId, String oldPassword) {
+		BBSResult<Object> result = new BBSResult<Object>();
+		User user = new User();
+		List<User> list = userDao.findByUserId(userId);
+		String oldPwd = BBSUtil.md5(oldPassword);
+		if(list != null){
+			User userList = list.get(0);
+			String pwd = userList.getPassword();
+			if(oldPwd.equals(pwd)){
+				if(!password.equals("")){
+					user.setName(userList.getName());
+					user.setIcon(picture);
+					user.setPassword(BBSUtil.md5(password));
+					user.setNick(nick);
+					user.setEmail(email);
+					user.setId(userId);
+					user.setToken(userList.getToken());
+					user.setPower(userList.getPower());
+					userDao.update(user);
+					result.setStatus(0);
+					result.setData(user);
+					result.setMsg("修改信息成功");
+					return result;
+				}else{
+					result.setStatus(3);
+					result.setMsg("密码不能为空");
+					return result;
+				}
+		}else{
+			result.setStatus(1);
+			result.setMsg("和原密码不一致");
+			return result;
+		}
+	}else{
+			result.setStatus(2);
+			result.setMsg("修改信息失败");
+			return result;
+		}
+	}
 }
