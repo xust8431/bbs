@@ -46,6 +46,62 @@
 			$(".comment-ul").on("click", "li .comment-ul-contant .comment-btns a", support);
 			//显示热帖
 			hotWrap();
+			
+			$("#up-post").click(function() {
+				var upposted = getCookie("up" + postId + userName);
+				var ok = true;
+				if(upposted == postId) {
+					ok = false;
+				}
+				if(ok) {
+					$.ajax({
+						url : path+"/post/uppost.bbs",
+						type : "post",
+						data : {
+							"postId" : postId
+						},
+						dataType : "json",
+						success : function(result) {
+							if(result.status == 0) {
+								var divstr = $("#up-number").html();
+								var upNumber = divstr.replace(/[^0-9]/ig,"");
+								var value = parseInt(upNumber, 10) + 1;
+								$("#up-number").html("<span>&#xe904;</span> " + value + "");
+								addCookie("up" + postId + userName, postId, 24);
+							}
+						},
+						error : function() {
+							alert("操作失败");
+						}
+					});
+				}
+			});
+			
+			$("#down-post").click(function() {
+				var downposted = getCookie("down" + postId + userName);
+				var ok = true;
+				if(downposted == postId) {
+					ok = false;
+				}
+				if(ok) {
+					$.ajax({
+						url : path+"/post/downpost.bbs",
+						type : "post",
+						data : {
+							"postId" : postId
+						},
+						dataType : "json",
+						success : function(result) {
+							//
+							addCookie("down" + postId + userName, postId, 24);
+						},
+						error : function() {
+							alert("操作失败");
+						}
+					});
+				}
+			});
+			
 			/* ====================================================================================== */
 			
 			//翻页
@@ -173,8 +229,8 @@
                             <h1>${result.data.title }</h1>
                             <small style="margin-top:0px;font-size:12px;">发表于：${result.data.createTime } 作者：${result.data.userName }</small>
                         </div>
-                        <div class="tag-talk" title="顶"><span>&#xe904;</span> ${result.data.up }</div>
-                        <div class="tag-talk" title="回复数"><span>&#xe903;</span> ${result.data.down }</div>
+                        <div class="tag-talk" title="顶" id="up-number"><span>&#xe904;</span> ${result.data.up }</div>
+                        <div class="tag-talk" title="回复数" id="reply-number"><span>&#xe903;</span> ${result.data.replyNumber }</div>
                     </li>
                 </ul>
                 <div class="clear"></div>
@@ -183,10 +239,10 @@
                     ${result.data.content }
                 </div>
                 <div class="contant-btn">
-                    <a href="javascript:;"><span>&#xe902;</span> 收藏</a>
-                    <a href="javascript:;"><span>&#xe024;</span> 分享</a>
-                    <a href="javascript:;"><span>&#xe904;</span> 顶</a>
-                    <a href="javascript:;"><span class="ico-cai">&#xe904;</span> 踩</a>
+                    <a href="javascript:;" id="collect"><span>&#xe902;</span> 收藏</a>
+                    <a href="javascript:;" id="share"><span>&#xe024;</span> 分享</a>
+                    <a href="javascript:;" id="up-post"><span>&#xe904;</span> 顶</a>
+                    <a href="javascript:;" id="down-post"><span class="ico-cai">&#xe904;</span> 踩</a>
                 </div>
             </div>
             <div class="comment-container">

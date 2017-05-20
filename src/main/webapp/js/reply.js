@@ -63,6 +63,10 @@ function addReply(postId, userName, page) {
 			success : function(result) {
 				if(result.status == 0) {
 					var replyText = $("#replyText").val("");
+					var divstr = $("#reply-number").html();
+					var upNumber = divstr.replace(/[^0-9]/ig,"");
+					var value = parseInt(upNumber, 10) + 1;
+					$("#reply-number").html("<span>&#xe903;</span> " + value);
 					loadReplys(postId, page);
 				} else {
 					alert(result.msg);

@@ -107,4 +107,38 @@ public class PostServiceImpl implements PostService{
 		result.setData(list);
 		return result;
 	}
+
+	public BBSResult<Object> upPost(String postId) {
+		BBSResult<Object> result = new BBSResult<Object>();
+		List<Post> posts = postDao.findByPostId(postId);
+		if(posts != null) {
+			Post post = posts.get(0);
+			long upNumber = post.getUp();
+			post.setUp(upNumber + 1);
+			postDao.update(post);
+			result.setStatus(0);
+			result.setMsg("顶成功");
+			return result;
+		}
+		result.setStatus(1);
+		result.setMsg("失败");
+		return result;
+	}
+
+	public BBSResult<Object> downPost(String postId) {
+		BBSResult<Object> result = new BBSResult<Object>();
+		List<Post> posts = postDao.findByPostId(postId);
+		if(posts != null) {
+			Post post = posts.get(0);
+			long downNumber = post.getDown();
+			post.setDown(downNumber + 1);
+			postDao.update(post);
+			result.setStatus(0);
+			result.setMsg("踩成功");
+			return result;
+		}
+		result.setStatus(1);
+		result.setMsg("失败");
+		return result;
+	}
 }

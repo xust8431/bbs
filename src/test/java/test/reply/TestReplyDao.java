@@ -27,9 +27,9 @@ public class TestReplyDao {
 	public void test1() {
 		Reply reply = new Reply();
 		reply.setReplyId(BBSUtil.createId());
-		reply.setPostId("343c1c592e9a4100a98dff139473c0ca");
+		reply.setPostId("b6fcff5805be45cea0bc4e5f3a5ff463");
 		reply.setUserName("admin");
-		reply.setReplyText("这里是6楼的回复");
+		reply.setReplyText("雪地里相爱他们说零下已结晶的誓言不会坏");
 		reply.setReplyUp(666);
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		reply.setReplyTime(time);

@@ -12,4 +12,16 @@ public interface PostService {
 	public BBSResult<Post> releasePost(String userName,String type, String title, String content, String picture);
 	public BBSResult<List<Post>> loadPostForType(int offset, String type);
 	public BBSResult<List<Post>> loadPostForHot();
+	/**
+	 * 顶帖子
+	 * @param postId
+	 * @return
+	 */
+	public BBSResult<Object> upPost(String postId);
+	/**
+	 * 踩帖子
+	 * @param postId
+	 * @return
+	 */
+	public BBSResult<Object> downPost(String postId);
 }
