@@ -39,6 +39,8 @@
 			function toAddReply() {
 				addReply(postId, userName);
 			}
+			//点赞
+			$(".comment-ul").on("click", "li .comment-ul-contant .comment-btns a", support);
 			/* ====================================================================================== */
 			
 			
@@ -133,7 +135,7 @@
                             <small><a href="#">用户名</a></small>
                             <h3>正文</h3>
                             <div class="comment-btns">
-                                <a href="javascript:;"><span>&#xe904;</span> (450)</a>
+                                <a href="javascript:;"><span>&#xe904;</span> (666)</a>
                             </div>
                         </div>
                         <div class="clear"></div>

@@ -8,6 +8,7 @@ public class Reply implements Serializable {
 	private String replyId;
 	private String postId;
 	private String userName;
+	private String userIcon;
 	private String replyText;
 	private long replyUp;
 	private Timestamp replyTime;
@@ -29,6 +30,12 @@ public class Reply implements Serializable {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getUserIcon() {
+		return userIcon;
+	}
+	public void setUserIcon(String userIcon) {
+		this.userIcon = userIcon;
+	}
 	public String getReplyText() {
 		return replyText;
 	}
@@ -47,4 +54,5 @@ public class Reply implements Serializable {
 	public void setReplyTime(Timestamp replyTime) {
 		this.replyTime = replyTime;
 	}
+	
 }

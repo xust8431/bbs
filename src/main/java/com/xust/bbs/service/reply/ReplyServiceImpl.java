@@ -74,4 +74,14 @@ public class ReplyServiceImpl implements ReplyService {
 		return null;
 	}
 
+	public BBSResult<Object> supportReply(String replyId) {
+		BBSResult<Object> result = new BBSResult<Object>();
+		Reply reply = replyDao.findByReplyId(replyId);
+		reply.setReplyUp(reply.getReplyUp() + 1);
+		replyDao.update(reply);
+		result.setStatus(0);
+		result.setMsg("点赞成功");
+		return result;
+	}
+
 }

@@ -33,5 +33,6 @@ public interface ReplyService {
 	 * @param postId
 	 * @return
 	 */
-	public BBSResult<Object> deleteReply(String postId); 
+	public BBSResult<Object> deleteReply(String postId);
+	public BBSResult<Object> supportReply(String replyId);
 }

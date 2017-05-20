@@ -1,3 +1,43 @@
+//点赞
+function support(){
+	//alert("success")
+	var replyId = $(this).parents("li").data("replyId");
+	var supported = getCookie("up" + replyId);
+	var a = this;
+	//alert(replyId);
+	var ok = true;
+	if(supported == replyId) {
+		ok = false;
+		//alert("已点赞");
+	}
+	if(replyId == undefined || replyId == null) {
+		ok = false;
+	}
+	if(ok) {
+		$.ajax({
+			url : path+"/reply/support.bbs",
+			type : "post",
+			data : {
+				"replyId" : replyId
+			},
+			dataType : "json",
+			success : function(result) {
+				if(result.status == 0) {
+					var astr = $(a).html();
+					var upNumber = astr.replace(/[^0-9]/ig,"");
+					var value = parseInt(upNumber, 10) + 1;
+					$(a).html("<span>&#xe904;</span> (" + value + ")");
+					addCookie("up" + replyId, replyId, 24);
+				}
+			},
+			error : function() {
+				alert("操作失败");
+			}
+		});
+	}
+	
+}
+
 //添加回复
 function addReply(postId, userName) {
 	var replyText = $("#replyText").val();

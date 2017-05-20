@@ -9,6 +9,8 @@
 		</property>
 		<property name="userName" type="string" column="user_name">
 		</property>
+		<property name="userIcon" type="string" column="user_icon">
+		</property>
 		<property name="replyText" type="string" column="reply_text">
 		</property>
 		<property name="replyUp" type="long" column="reply_up">

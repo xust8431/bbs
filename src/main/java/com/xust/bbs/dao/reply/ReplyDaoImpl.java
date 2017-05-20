@@ -47,4 +47,13 @@ public class ReplyDaoImpl implements ReplyDao {
 		template.delete(reply);
 	}
 
+	public void update(Reply reply) {
+		template.update(reply);
+	}
+
+	public Reply findByReplyId(String replyId) {
+		Reply reply = template.get(Reply.class, replyId);
+		return reply;
+	}
+
 }
