@@ -18,7 +18,11 @@
     <script src="js/docs.min.js"></script>
     <script type="text/javascript" src="js/hot-wrap.js"></script>
     <script type="text/javascript" src="js/basevalue.js"></script>
+    <script type="text/javascript" src="js/cookie_util.js"></script>
+    <script type="text/javascript" src="js/info.js"></script>
     <script type="text/javascript">
+	    var userId = getCookie("userId");
+		$("#update").click(updateUser(userId));
    		$(function () {
     		hotWrap();
     		$(".ul-hot").on("click", "li", function() {
@@ -27,8 +31,13 @@
 				//获取请求参数
 				var postId = $(this).data("postId");
 				console.log(postId);
-				window.location.href = path + "/reply/load.bbs?postId=" + postId;
+				var xml = XMLHttpRequest();
+				xml.open("POST", path + "/reply/load.bbs?postId=" + postId, true);
         	});
+    		var userId = getCookie("userId");
+    		//console.log(userId);
+    		loadUserMsg(userId);
+    		//$("#update").click(updateUser(userId));
     	});
     </script>
     <!--[if lt IE 9]>
@@ -83,12 +92,7 @@
         <div class="col-md-3 column left-side">
             <img alt="" src="img/huser01.gif" class="img-thumbnail user-icon" />
             <ul class="list-unstyled">
-                <li>
-                    <strong>昵称</strong><br><span>雾霾中的飞鱼</span>
-                </li>
-                <li>
-                    <strong>邮箱</strong><br><span>wuyuke163@163.com</span>
-                </li>
+                
             </ul>
         </div>
         <div class="col-md-6 column center-side">
@@ -101,9 +105,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="user-name" class="col-sm-2 control-label">用户名</label>
+                    <label for="user-pwd" class="col-sm-2 control-label">原密码</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="user-name" readonly/>
+                        <input type="password" class="form-control" id="user-pwd" />
+                        <span id="pwd_span"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="user-password" class="col-sm-2 control-label">新密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="user-password" title="请输入6位-16位密码"/>
+                    	<span id="password_span"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="user-password2" class="col-sm-2 control-label">再次输入密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="user-password2" title="请再次输入相同的密码"/>
+                        <span id="password2_span"></span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -115,12 +134,12 @@
                 <div class="form-group">
                     <label for="user-email" class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="user-email" />
+                        <input type="email" class="form-control" id="user-email" />
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-6 col-sm-10">
-                        <button type="submit" class="btn btn-warning">修改</button>
+                        <button type="button" class="btn btn-warning" id="update" onclick="updateUser(userId)">修改</button>
                     </div>
                 </div>
             </form>

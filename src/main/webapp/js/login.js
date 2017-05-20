@@ -30,9 +30,12 @@ function userLogin(){
         	            success:function(result){
         	                if(result.status == 0){
         	                    //将信息写入cookie
-        	                    var userId = result.data.user_id;
+        	                    var userId = result.data.id;
+        	                    var userName = result.data.name;
+        	                    var token = result.data.token;
         	                    addCookie("userId",userId,2);
-        	                    addCookie("userName",name,2);
+        	                    addCookie("userName",userName,2);
+        	                    addCookie("token",token,2);
         	                    window.location.href="home_page.html";
         	                }else if(result.status == 1){//用户名不存在
         	                	$("#message_strong").html(result.msg);
