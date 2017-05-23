@@ -12,6 +12,7 @@ import com.xust.bbs.dao.post.PostDao;
 import com.xust.bbs.dao.reply.ReplyDao;
 import com.xust.bbs.entity.Post;
 import com.xust.bbs.entity.Reply;
+import com.xust.bbs.entity.User;
 import com.xust.bbs.util.BBSResult;
 import com.xust.bbs.util.BBSUtil;
 
@@ -50,7 +51,7 @@ public class ReplyServiceImpl implements ReplyService {
 		return result;
 	}
 
-	public BBSResult<Object> addReply(String postId, String userName, String replyText) {
+	public BBSResult<Object> addReply(String postId, String userId, String replyText) {
 		BBSResult<Object> result = new BBSResult<Object>();
 		List<Post> posts = postDao.findByPostId(postId);
 		if(posts != null) {
@@ -60,10 +61,12 @@ public class ReplyServiceImpl implements ReplyService {
 			post.setReplyNumber(replyNumber + 1);
 			postDao.update(post);
 			//添加回复至reply表
+			User user = new User();
+			user.setId(userId);
 			Reply reply = new Reply();
 			reply.setReplyId(BBSUtil.createId());
 			reply.setPostId(postId);
-			reply.setUserName(userName);
+			reply.setUser(user);
 			reply.setReplyText(replyText);
 			reply.setReplyUp(0);
 			Timestamp time = new Timestamp(System.currentTimeMillis());

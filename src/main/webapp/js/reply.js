@@ -62,7 +62,7 @@ function support(){
 }
 
 //添加回复
-function addReply(postId, userName, page) {
+function addReply(postId, userId, page) {
 	var replyText = $("#replyText").val();
 	//alert(replyText);
 	var ok = true;
@@ -78,7 +78,7 @@ function addReply(postId, userName, page) {
 			type : "post",
 			data : {
 				"postId" : postId,
-				"userName" : userName,
+				"userId" : userId,
 				"replyText" : replyText
 			},
 			dataType : "json",
@@ -119,7 +119,7 @@ function loadReplys(postId, page) {
 				for(var i = 0; i < replys.length; i++) {
 					var reply = replys[i];
 					var replyId = reply.replyId;
-					var userName = reply.userName;
+					var userName = reply.user.name;
 					var replyText = reply.replyText;
 					var replyUp = reply.replyUp;
 					var replyTime = reply.replyTime;

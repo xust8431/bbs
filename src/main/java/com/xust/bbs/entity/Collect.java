@@ -11,7 +11,6 @@ public class Collect implements Serializable{
 	private String collectId;
 	private String postId;
 	private String userName;
-	private String desc;
 	private Timestamp time;
 	private Post posts;
 	public String getCollectId() {
@@ -32,12 +31,6 @@ public class Collect implements Serializable{
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-	public String getDesc() {
-		return desc;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
 	}
 	public Timestamp getTime() {
 		return time;

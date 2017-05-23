@@ -7,11 +7,17 @@ public class Reply implements Serializable {
 	
 	private String replyId;
 	private String postId;
-	private String userName;
-	private String userIcon;
+	private String userId;
+	private User user;
 	private String replyText;
 	private long replyUp;
 	private Timestamp replyTime;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public String getReplyId() {
 		return replyId;
 	}
@@ -24,17 +30,11 @@ public class Reply implements Serializable {
 	public void setPostId(String postId) {
 		this.postId = postId;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getUserIcon() {
-		return userIcon;
-	}
-	public void setUserIcon(String userIcon) {
-		this.userIcon = userIcon;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getReplyText() {
 		return replyText;

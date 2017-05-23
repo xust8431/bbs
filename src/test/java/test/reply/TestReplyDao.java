@@ -10,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.xust.bbs.dao.reply.ReplyDao;
 import com.xust.bbs.entity.Reply;
+import com.xust.bbs.entity.User;
 import com.xust.bbs.util.BBSUtil;
 
 public class TestReplyDao {
@@ -25,12 +26,14 @@ public class TestReplyDao {
 	
 	@Test
 	public void test1() {
+		User user = new User();
+		user.setId("");
 		Reply reply = new Reply();
 		reply.setReplyId(BBSUtil.createId());
-		reply.setPostId("b6fcff5805be45cea0bc4e5f3a5ff463");
-		reply.setUserName("admin");
+		reply.setPostId("ff0de6b03c9e4986a50d85d8b7c73de6");
+		reply.setUser(user);
 		reply.setReplyText("雪地里相爱他们说零下已结晶的誓言不会坏");
-		reply.setReplyUp(666);
+		reply.setReplyUp(11);
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		reply.setReplyTime(time);
 		replyDao.save(reply);

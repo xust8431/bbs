@@ -30,7 +30,6 @@ public class CollectServiceImpl implements CollectService{
 		post.setId(postId);
 		if(list.size() == 0){
 			collect.setCollectId(BBSUtil.createId());
-			collect.setDesc("");
 			//collect.setPostId(postId);
 			Timestamp time = new Timestamp(System.currentTimeMillis());
 			collect.setTime(time);

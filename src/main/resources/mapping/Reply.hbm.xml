@@ -7,10 +7,12 @@
 		</id>
 		<property name="postId" type="string" column="post_id">
 		</property>
-		<property name="userName" type="string" column="user_name">
+		<!-- 
+		<property name="userId" type="string" column="user_id">
 		</property>
-		<property name="userIcon" type="string" column="user_icon">
-		</property>
+		 -->
+		<many-to-one name="user" column="user_id" class="com.xust.bbs.entity.User" not-null="false" fetch="join" lazy="false">
+		</many-to-one>
 		<property name="replyText" type="string" column="reply_text">
 		</property>
 		<property name="replyUp" type="long" column="reply_up">

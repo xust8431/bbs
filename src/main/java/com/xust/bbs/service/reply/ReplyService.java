@@ -27,7 +27,7 @@ public interface ReplyService {
 	 * @param userName
 	 * @param replyText
 	 */
-	public BBSResult<Object> addReply(String postId, String userName, String replyText);
+	public BBSResult<Object> addReply(String postId, String userId, String replyText);
 	/**
 	 * 删除回复
 	 * @param postId

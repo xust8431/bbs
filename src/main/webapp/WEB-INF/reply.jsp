@@ -32,6 +32,7 @@
         	var replyPage = parseInt(parseInt(replyNumber, 10) / 20 + 1, 10);
         	//登陆后显示登录名
 			var userName = getCookie("userName");
+			var userId = getCookie("userId");
 			if(userName != null) {
 				$("#login-name").html(userName);
 			}
@@ -40,7 +41,7 @@
 			//添加回复
 			$(".submit-comment").click(toAddReply);
 			function toAddReply() {
-				addReply(postId, userName, page);
+				addReply(postId, userId, page);
 			}
 			//点赞
 			$(".comment-ul").on("click", "li .comment-ul-contant .comment-btns a", support);

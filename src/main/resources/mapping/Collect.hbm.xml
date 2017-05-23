@@ -6,7 +6,6 @@
 		<id name="collectId" type="string" column="collect_id"></id>
 		<!-- <property name="postId" type="string" column="post_id"></property>-->
 		<property name="userName" type="string" column="user_name"></property>
-		<property name="desc" type="string" column="collect_desc"></property>
 		<property name="time" type="timestamp" column="collect_time"></property>
 		<many-to-one name="posts" column="post_id"
 		 class="com.xust.bbs.entity.Post" not-null="false" lazy="false" fetch="join"></many-to-one>

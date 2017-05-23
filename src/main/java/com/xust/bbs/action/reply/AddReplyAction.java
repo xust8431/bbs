@@ -13,7 +13,7 @@ import com.xust.bbs.util.BBSResult;
 public class AddReplyAction {
 
 	private String postId;
-	private String userName;
+	private String userId;
 	private String replyText;
 	private BBSResult<Object> result;
 	
@@ -21,7 +21,7 @@ public class AddReplyAction {
 	private ReplyService replyService;
 	
 	public String execute() {
-		result = replyService.addReply(postId, userName, replyText);
+		result = replyService.addReply(postId, userId, replyText);
 		return "success";
 	}
 
@@ -33,12 +33,12 @@ public class AddReplyAction {
 		this.postId = postId;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getReplyText() {
