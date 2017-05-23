@@ -49,4 +49,5 @@ public interface PostDao {
 	 * @param post
 	 */
 	public void update(Post post);
+	
 }

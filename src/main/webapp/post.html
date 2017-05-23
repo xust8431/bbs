@@ -30,7 +30,7 @@
 			if(offset == 1){
 				typeListPost((offset - 1),type);
 			}else{
-				typeListPost(((offset - 1)*20 + 1),type);
+				typeListPost(((offset - 1)*20),type);
 				//console.log((offset - 1)*20 + 1);
 				//console.log("+++++++++++++++++=");
 			}
@@ -79,7 +79,7 @@
 				$(this).find("a").addClass("checked");
 				//获取请求参数
 				var postId = $(this).data("postId");
-				console.log(postId);
+				//console.log(postId);
 				window.location.href = path + "/reply/load.bbs?postId=" + postId;
         	});
         	$(".ul-hot").on("click", "li", function() {
@@ -87,9 +87,19 @@
 				$(this).find("a").addClass("checked");
 				//获取请求参数
 				var postId = $(this).data("postId");
-				console.log(postId);
-				var xml = XMLHttpRequest();
+				//console.log(postId);
+				var xml = null;
+				if(window.XMLHttpRequest){
+					//非ie浏览器
+					xml = new XMLHttpRequest();
+				}else{
+					//ie浏览器
+					xml = new ActiveXObject(
+							"MicroSoft.XMLHttp");
+				}
+				//console.log("====");
 				xml.open("POST", path + "/reply/load.bbs?postId=" + postId, true);
+				xml.send(null);
         	});
         });
     </script>

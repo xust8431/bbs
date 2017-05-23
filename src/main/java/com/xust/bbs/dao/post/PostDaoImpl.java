@@ -99,4 +99,6 @@ public class PostDaoImpl implements PostDao{
 	public void update(Post post) {
 		template.update(post);
 	}
+	
+
 }

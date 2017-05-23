@@ -1,6 +1,8 @@
 package com.xust.bbs.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 public class User implements Serializable{
 	
@@ -62,5 +64,6 @@ public class User implements Serializable{
 	public void setPower(String power) {
 		this.power = power;
 	}
+	
 	
 }

@@ -64,6 +64,12 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<!-- 查看收藏帖子 -->
+		<action name="collectList" class="collectListAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 		<!-- 发表主题 -->
 		<action name="release" class="postReleaseAction" method="execute">
 			<result name="success" type="json">

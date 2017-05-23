@@ -21,7 +21,7 @@ public class ReplyDaoImpl implements ReplyDao {
 	private HibernateTemplate template;
 
 	public List<Reply> findByPostId(final String postId, final int offset, final int length) {
-		final String hql = "from Reply where postId=? order by replyTime";
+		final String hql = "from Reply where post_id = ? order by reply_time";
 		@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 		List<Reply> replys = template.executeFind(
 			new  HibernateCallback() {

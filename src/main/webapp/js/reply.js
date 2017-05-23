@@ -1,3 +1,25 @@
+//收藏
+function Collect(){
+	var postId = $("#post-id").val();
+	var userName = getCookie("userName");
+	//console.log(postId+"--"+userName);
+	$.ajax({
+		url:path+"/post/collect.bbs",
+		type:"post",
+		data:{"postId":postId,"userName":userName},
+		dataType:"json",
+		success:function(result){
+			if(result.status == 0){
+				alert(result.msg);
+			}else{
+				alert(result.msg);
+			}
+		},
+		error:function(){
+			alert("收藏失败");
+		}
+	});
+}
 //点赞
 function support(){
 	//alert("success")

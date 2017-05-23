@@ -21,10 +21,41 @@
     <script type="text/javascript" src="js/cookie_util.js"></script>
     <script type="text/javascript" src="js/info.js"></script>
     <script type="text/javascript">
+    	//修改信息
 	    var userId = getCookie("userId");
+	    var userName = getCookie("userName");
+		var offset = 0;
 		$("#update").click(updateUser(userId));
+		function get_page(t) {
+			offset = Number($(t).html());
+			
+			if(offset == 1){
+				loadCollectList(userName,(offset - 1));
+			}else{
+				loadCollectList(userName,((offset - 1)*20));
+			}
+		}
+	    function reduce_page() {
+	    	offset = offset - 1;
+	    	if(offset == 0){
+	    		alert("已经是第一页啦!");
+	    		return;
+	    	}
+	    	if(offset == 1){
+	    		loadCollectList(userName,(offset - 1));
+			}else{
+				loadCollectList(userName,((offset - 1)*20));
+			}
+	    	//console.log(offset);
+	    }
+	    function add_page() {
+	    	offset = offset + 1;
+	    	loadCollectList(userName,((offset - 1)*20));
+	    }
    		$(function () {
+   			//热帖榜显示
     		hotWrap();
+   			//查看帖子内容
     		$(".ul-hot").on("click", "li", function() {
         		$(".ul-hot a").removeClass("checked");
 				$(this).find("a").addClass("checked");
@@ -36,8 +67,11 @@
         	});
     		var userId = getCookie("userId");
     		//console.log(userId);
+    		//查看用户信息
     		loadUserMsg(userId);
     		//$("#update").click(updateUser(userId));
+    		//显示收藏列表
+    		loadCollectList(userName,offset);
     	});
     </script>
     <!--[if lt IE 9]>
@@ -156,26 +190,19 @@
                         </div>
                         <div class="tag-talk" title="回复数"><span>&#xe903;</span> 58</div>
                     </li>
-                    <li>
-                        <img src="./img/hico02.gif" width="50" height="50" alt="">
-                        <div class="main-ul-contant">
-                            <h3><a href="#">对话高圆圆：最漂亮的智能手环设计师</a></h3>
-                            <small>Amazfit与女神高圆圆合作推出了两款联名手环“月霜”与“赤道”</small>
-                        </div>
-                        <div class="tag-talk" title="回复数"><span>&#xe903;</span> 58</div>
-                    </li>
+                    
                 </ul>
                 <div class="clear"></div>
-                <div class="page">
-                    <a href="#" class="prev">&lt;</a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#" class="next">&gt;</a>
-                </div>
+               <div class="page">
+				    <a href="javascript:;" onclick="reduce_page()" class="prev">«</a>
+				    <a href="javascript:;" onclick="get_page(this)" class="active">1</a>
+				    <a href="javascript:;" onclick="get_page(this)">2</a>
+				    <a href="javascript:;" onclick="get_page(this)">3</a>
+				    <a href="javascript:;" onclick="get_page(this)">4</a>
+				    <a href="javascript:;" onclick="get_page(this)">5</a>
+				    <a href="javascript:;" onclick="get_page(this)">6</a>
+				    <a href="javascript:;" onclick="add_page()" class="next">»</a>
+               </div>
             </div>
         </div>
         <div class="col-md-3 right-side">
