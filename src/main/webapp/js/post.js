@@ -7,7 +7,7 @@ function count(type){
 		dataType:"json",
 		success:function(result){
 			if(result.status == 0){
-				console.log(result.data);
+				//console.log(result.data);
 				$("#count_span").html(result.data);
 			}
 		},
@@ -48,10 +48,9 @@ function typeListPost(offset,type){
 //发帖
 function postMessage(){
 	var type = $("#select_type option:selected").val();
-	console.log(type);
+	//console.log(type);
 	var userName = getCookie("userName");
 	var title = $("#title").val().trim();
-	var picture = "./img/hico01.gif";
 	var content = $("#content").val().trim();
 	//console.log(title+"&&&"+content);
 	var ok = true;
@@ -66,18 +65,19 @@ function postMessage(){
 		return;
 	}
 	if(ok){
-    	$.ajax({
-    		url:path+"/post/release.bbs",
+		$.ajaxFileUpload({
+    		url:path+"/post/release.bbs"+"?type="+type+"&userName="+userName+"&title="+title+"&content="+content,
     		type:"post",
-    		data:{"userName":userName,"type":type,"title":title,"content":content,"picture":picture},
+    		secureuri:false,
+    		fileElementId:"upload_file",
     		dataType:"json",
     		success:function(result){
+    			console.log(result);
     			if(result.status == 0){
-    				window.location.href="post.html";
-    				loadPost(0);
     				$("#title").val("");
     				$("#content").val("");
     				$("#upload_file").val("");
+    				window.location.href="post.html";
     			}
     		},
     		error:function(){

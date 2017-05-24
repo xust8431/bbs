@@ -68,7 +68,6 @@ public class PostServiceImpl implements PostService{
 		post.setLastReplyTime(time);
 		postDao.add(post);
 		result.setStatus(0);
-		result.setData(post);
 		result.setMsg("发表帖子成功");
 		return result;
 	}

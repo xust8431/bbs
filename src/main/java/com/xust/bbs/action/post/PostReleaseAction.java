@@ -1,12 +1,20 @@
 package com.xust.bbs.action.post;
 
-import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
+import java.util.ResourceBundle;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.xust.bbs.entity.Post;
 import com.xust.bbs.service.post.PostService;
+import com.xust.bbs.util.BBSImagePathUtil;
 import com.xust.bbs.util.BBSResult;
 
 @Controller
@@ -17,17 +25,45 @@ public class PostReleaseAction {
 	private String userName;
 	private String title;
 	private String content;
-	private String picture;
 	private String type;
+	private File upload;
+	private String uploadFileName;
+	private String uploadContentType;
 	//输出
 	private BBSResult<Post> result;
 	
 	@Resource
 	private PostService postService;
 	
-	public String execute(){
-		result = postService.releasePost(userName, type, title, content, picture);
+	public String execute() throws IOException{
+		String path = BBSImagePathUtil.getImagePath(upload, uploadFileName, uploadContentType);
+		System.out.println(path);
+		result = postService.releasePost(userName, type, title, content, path);
 		return "success";
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
 	}
 
 	public String getUserName() {
@@ -52,14 +88,6 @@ public class PostReleaseAction {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getPicture() {
-		return picture;
-	}
-
-	public void setPicture(String picture) {
-		this.picture = picture;
 	}
 
 	public BBSResult<Post> getResult() {

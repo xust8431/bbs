@@ -241,7 +241,7 @@
                 </ul>
                 <div class="clear"></div>
                 <div class="contant-info">
-                    <img src="../img/ChMkJldiS1eIZrq7AA0lqb0yX8kAASqZgLX4XMADSXB895.jpg" alt=""><br>
+                    <img src="${result.data.picture }" alt=""><br>
                     ${result.data.content }
                 </div>
                 <div class="contant-btn">

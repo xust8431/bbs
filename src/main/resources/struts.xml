@@ -8,6 +8,7 @@
 	<!-- 覆盖底层识别action请求扩展名 -->
 	<constant name="struts.action.extension" value="bbs">
 	</constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
 
 	<!-- json-default包在struts2-json-plugin.jar中 -->
 	<!-- 用户表 -->
