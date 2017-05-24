@@ -24,7 +24,7 @@ CREATE TABLE `user` (
 DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `post_id` varchar(100) NOT NULL COMMENT '帖子ID',
-  `user_name` varchar(100) DEFAULT NULL COMMENT '用户名',
+  `user_id` varchar(100) DEFAULT NULL COMMENT '用户ID',
   `post_title` varchar(200) DEFAULT NULL COMMENT '标题',
   `post_content` text COMMENT '帖子内容',
   `post_picture` varchar(100) DEFAULT NULL COMMENT '图片',
