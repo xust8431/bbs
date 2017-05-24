@@ -12,16 +12,25 @@ import org.apache.commons.net.ftp.FTPFile;
 
 public class BBSImagePathUtil {
 
-	public static String getImagePath(File file, String fileFileName, String fileContentType) throws IOException{
-		
+	public static String getImagePath(File file, String fileFileName, String fileContentType) {
+		String dire = "bbs/picture/";
+		return saveToFTP(file, fileFileName, dire);
+	}
+	
+	public static String getIconPath(File file, String fileFileName, String fileContentType) {
+		String dire = "bbs/icon/";
+		return saveToFTP(file, fileFileName, dire);
+	}
+
+	private static String saveToFTP(File file, String fileFileName, String dire) {
 		FTPClient ftpClient = new FTPClient(); 
 		try { 
-			ftpClient.connect("127.0.0.1",2121); 
-			ftpClient.login("Administrator", "backspace"); 
+			ftpClient.connect("127.0.0.1", 2121); 
+			ftpClient.login("Wuyk", "weixiao"); 
 			ftpClient.enterLocalPassiveMode();
 			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 			//设置上传目录 
-			ftpClient.changeWorkingDirectory("bbs/picture/");
+			ftpClient.changeWorkingDirectory(dire);
 			//设置文件的路径
 			String prefix = fileFileName.substring(fileFileName.lastIndexOf(".") + 1);
 			String path = BBSUtil.createId() + "." + prefix;
@@ -48,7 +57,7 @@ public class BBSImagePathUtil {
 		    os.flush();
 		    os.close();
 		    is.close();
-			return "ftp://127.0.0.1:2121/bbs/picture/" + path;
+			return "ftp://127.0.0.1:2121/" + dire + path;
 		} catch(IOException e) {
 			throw new RuntimeException(e);
 		} finally {

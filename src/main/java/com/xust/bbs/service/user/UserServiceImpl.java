@@ -64,10 +64,10 @@ public class UserServiceImpl implements UserService{
 			result.setMsg("用户名已存在！");
 			return result;
 		}
-		
 		user.setId(BBSUtil.createId());
 		user.setName(name);
 		user.setNick(nick);
+		user.setIcon("http://localhost:8888/bbs/img/default-icon.png");
 		user.setPassword(BBSUtil.md5(password));
 		user.setPower("0");
 		user.setToken(BBSUtil.createId());

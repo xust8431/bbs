@@ -230,7 +230,7 @@
                 </ol>
                 <ul class="main-ul" style="margin-top:0px;">
                     <li>
-                        <img src="../img/huser01.gif" width="50" height="50" alt="">
+                        <img src="${result.data.user.icon }" width="50" height="50" alt="">
                         <div class="main-ul-contant">
                             <h1>${result.data.title }</h1>
                             <small style="margin-top:0px;font-size:12px;">发表于：${result.data.createTime } 作者：${result.data.user.name }</small>

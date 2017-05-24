@@ -123,11 +123,14 @@ function loadReplys(postId, page) {
 					var replyText = reply.replyText;
 					var replyUp = reply.replyUp;
 					var replyTime = reply.replyTime;
+					var userIcon = reply.user.icon;
 					replyTime = replyTime.replace("T", " ");
 					
 					var sli = "";
 					sli += '<li>';
-					sli += '<img src="../img/hico02.gif" width="50" height="50" alt="">';
+					sli += '<img src="';
+					sli += userIcon;
+					sli += '" width="50" height="50" alt="">';
 					sli += '<div class="comment-ul-contant">';
 					sli += '<small><a href="#">';
 					sli += userName;

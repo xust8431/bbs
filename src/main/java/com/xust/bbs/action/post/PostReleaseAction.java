@@ -2,17 +2,12 @@ package com.xust.bbs.action.post;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 
-import org.apache.struts2.ServletActionContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.xust.bbs.entity.Post;
 import com.xust.bbs.service.post.PostService;
 import com.xust.bbs.util.BBSImagePathUtil;
 import com.xust.bbs.util.BBSResult;
@@ -36,8 +31,10 @@ public class PostReleaseAction {
 	private PostService postService;
 	
 	public String execute() throws IOException{
-		String path = BBSImagePathUtil.getImagePath(upload, uploadFileName, uploadContentType);
-		//System.out.println(path);
+		String path = null;
+		if(upload != null) {
+			path = BBSImagePathUtil.getImagePath(upload, uploadFileName, uploadContentType);
+		}
 		result = postService.releasePost(userId, type, title, content, path);
 		return "success";
 	}
