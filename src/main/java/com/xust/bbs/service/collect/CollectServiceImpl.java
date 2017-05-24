@@ -25,7 +25,6 @@ public class CollectServiceImpl implements CollectService{
 		Collect collect = new Collect();
 		BBSResult<Collect> result = new BBSResult<Collect>();
 		List<Collect> list = collectDao.check(postId, userName);
-		System.out.println(list);
 		Post post = new Post();
 		post.setId(postId);
 		if(list.size() == 0){
@@ -53,6 +52,15 @@ public class CollectServiceImpl implements CollectService{
 		result.setStatus(0);
 		result.setMsg("查询收藏列表成功");
 		result.setData(list);
+		return result;
+	}
+	
+	public BBSResult<Object> countCollect(String userName) {
+		BBSResult<Object> result = new BBSResult<Object>();
+		int rows = collectDao.getCount(userName);
+		
+		result.setStatus(0); 
+		result.setData(rows);
 		return result;
 	}
 }

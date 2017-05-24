@@ -70,6 +70,12 @@
 				<param name="root">result</param>
 			</result>
 		</action>
+		<!-- 查看每个用户收藏帖子数量 -->
+		<action name="countCollect" class="countCollectAction" method="execute">
+			<result name="success" type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
 		<!-- 发表主题 -->
 		<action name="release" class="postReleaseAction" method="execute">
 			<result name="success" type="json">

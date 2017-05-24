@@ -24,7 +24,15 @@
 		});
 	}
 
-
+//查看帖子内容
+function checkPostMsg() {
+	$(".ul-hot a").removeClass("checked");
+	$(this).find("a").addClass("checked");
+	//获取请求参数
+	var postId = $(this).data("postId");
+	//console.log(postId);
+	window.location.href = path + "/reply/load.bbs?postId=" + postId;
+	}
 
         
                     

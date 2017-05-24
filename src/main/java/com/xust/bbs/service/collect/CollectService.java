@@ -11,4 +11,5 @@ public interface CollectService {
 
 	public BBSResult<Collect> collectPost(String postId, String userName);
 	public BBSResult<List<Collect>> findCollectList(String userName, int offset);
+	public BBSResult<Object> countCollect(String userName);
 }

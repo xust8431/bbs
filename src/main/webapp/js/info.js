@@ -68,6 +68,7 @@ function loadUserMsg(userId){
 				success:function(result){
 					if(result.status == 0){
 						alert(result.msg);
+						loadUserMsg(userId);
 					}else if(result.status == 1){
 						$("#pwd_span").html(result.msg);
 					}else if(result.status == 2){
@@ -119,3 +120,93 @@ function loadCollectList(userName,offset){
 		}
 	});
 }
+//翻页
+function changePage(offset) {
+	var count = $("#count_span").html();
+	var collectPage = 0;
+	if(count%5 == 0){
+		collectPage = count;
+	}else{
+		collectPage = count/5 + 1;
+	}
+	if(offset < collectPage) {
+		var last = $(".page a:last").prev().html();
+		if(offset == last) {
+			var a = $(".page").find("a");
+			for(var i = 1; i < a.length-1; i++) {
+				var $a = $(a[i]);
+				var number = parseInt($a.html(), 10);
+				$a.html(number+1);
+			}
+			$(".page a").removeClass("active");
+			$(".page a:last").prev().prev().addClass("active");
+		}
+	}	
+	if(offset > 1) {
+		var first = $(".page a:first").next().html();
+		if(offset == first) {
+			var a = $(".page").find("a");
+			for(var i = 1; i < a.length-1; i++) {
+				var $a = $(a[i]);
+				var number = parseInt($a.html(), 10);
+				$a.html(number-1);
+			}
+			$(".page a").removeClass("active");
+			$(".page a:first").next().next().addClass("active");
+		}
+	}
+}
+function get_page(t) {
+	offset = Number($(t).html());
+	if(offset == 1){
+		loadCollectList(userName,(offset - 1));
+	}else{
+		loadCollectList(userName,((offset - 1)*5));
+	}
+}
+function reduce_page() {
+	offset = offset - 1;
+	if(offset == 0){
+		alert("已经是第一页啦!");
+		return;
+	}
+	if(offset == 1){
+		loadCollectList(userName,(offset - 1));
+	}else{
+		loadCollectList(userName,((offset - 1)*5));
+	}
+	//console.log(offset);
+}
+function add_page() {
+	offset = offset + 1;
+	loadCollectList(userName,((offset - 1)*5));
+}
+
+//计算帖子数量
+function countCollect(userName){
+	$.ajax({
+		url:path+"/post/countCollect.bbs",
+		type:"post",
+		data:{"userName":userName},
+		dataType:"json",
+		success:function(result){
+			if(result.status == 0){
+				var row = result.data;
+				$("#count_span").html(row);
+			}
+		},
+		error:function(){
+			alert("计算收藏帖子总数失败");
+		}
+	});
+}
+//查看收藏帖子内容
+function checkCollectMsg() {
+	$(".main-ul a").removeClass("checked");
+	$(this).find("a").addClass("checked");
+	//获取请求参数
+	var postId = $(this).data("postId");
+	//console.log(postId);
+	window.location.href = path + "/reply/load.bbs?postId=" + postId;
+}
+

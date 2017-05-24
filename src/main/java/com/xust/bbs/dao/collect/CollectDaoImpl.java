@@ -74,4 +74,10 @@ public class CollectDaoImpl implements CollectDao{
 		          });
 		return list;
 	}
+	
+	public int getCount(String userName) {
+		String hql = "select count(*) from Collect as collect where user_name = ?";
+		Number count = (Number)template.find(hql,userName).listIterator().next();
+		return count.intValue();
+	}
 }
