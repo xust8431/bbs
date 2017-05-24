@@ -26,52 +26,27 @@
 	    var userName = getCookie("userName");
 		var offset = 0;
 		$("#update").click(updateUser(userId));
-		function get_page(t) {
-			offset = Number($(t).html());
-			
-			if(offset == 1){
-				loadCollectList(userName,(offset - 1));
-			}else{
-				loadCollectList(userName,((offset - 1)*20));
-			}
-		}
-	    function reduce_page() {
-	    	offset = offset - 1;
-	    	if(offset == 0){
-	    		alert("已经是第一页啦!");
-	    		return;
-	    	}
-	    	if(offset == 1){
-	    		loadCollectList(userName,(offset - 1));
-			}else{
-				loadCollectList(userName,((offset - 1)*20));
-			}
-	    	//console.log(offset);
-	    }
-	    function add_page() {
-	    	offset = offset + 1;
-	    	loadCollectList(userName,((offset - 1)*20));
-	    }
+		//显示收藏列表
+		loadCollectList(userName,offset);
+		get_page(t);
+		reduce_page();
+		add_page();
+	  	
    		$(function () {
    			//热帖榜显示
     		hotWrap();
    			//查看帖子内容
-    		$(".ul-hot").on("click", "li", function() {
-        		$(".ul-hot a").removeClass("checked");
-				$(this).find("a").addClass("checked");
-				//获取请求参数
-				var postId = $(this).data("postId");
-				console.log(postId);
-				var xml = XMLHttpRequest();
-				xml.open("POST", path + "/reply/load.bbs?postId=" + postId, true);
-        	});
+    		$(".ul-hot").on("click", "li", checkPostMsg);
     		var userId = getCookie("userId");
     		//console.log(userId);
     		//查看用户信息
     		loadUserMsg(userId);
-    		//$("#update").click(updateUser(userId));
-    		//显示收藏列表
-    		loadCollectList(userName,offset);
+    		//查看帖子收藏内容
+    		$(".main-ul").on("click", "li", checkCollectMsg);
+    		//计算收藏帖子总数
+    		countCollect(userName);
+    		//翻页数字变化
+    		$(".page a").click(changePage(offset));
     	});
     </script>
     <!--[if lt IE 9]>
@@ -180,6 +155,7 @@
             <div class="main-container">
                 <div class="main-h1">
                     <h1>我的收藏</h1>
+                    <dl><dd>帖子：<span id="count_span"></span></dd></dl>
                 </div>
                 <ul class="main-ul">
                     <li>

@@ -20,6 +20,9 @@ public interface CollectDao {
 	 * @return
 	 */
 	public List<Collect> findByUserName(final int offset, final int length, final String userName);
-	
-	
+	/**
+	 * 查询每个用户收藏帖子的数量
+	 * @return
+	 */
+	public int getCount(String userName);
 }
