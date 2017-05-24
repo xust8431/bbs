@@ -57,4 +57,16 @@ public class TestCase extends BaseTest{
 		BBSResult<Integer> result = postService.countPost("1");
 		System.out.println(result.getData());
 	}
+	
+	@Test
+	public void test6(){
+		BBSResult<List<Post>> result = postService.loadPostForType(0, "0");
+		System.out.println(result.getData().get(0).getTitle());
+	}
+	
+	@Test
+	public void test7(){
+		BBSResult<Object> result = postService.releasePost("123", "0", "sddas", "dsaud", "dasdas");
+		System.out.println(result.getMsg());
+	}
 }

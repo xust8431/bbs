@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xust.bbs.dao.post.PostDao;
 import com.xust.bbs.entity.Post;
+import com.xust.bbs.entity.User;
 import com.xust.bbs.util.BBSResult;
 import com.xust.bbs.util.BBSUtil;
 
@@ -50,11 +51,12 @@ public class PostServiceImpl implements PostService{
 		return result;
 	}
 	
-	public BBSResult<Post> releasePost(String userName,String type, String title, String content, String picture) {
-		BBSResult<Post> result = new BBSResult<Post>();
+	public BBSResult<Object> releasePost(String userId,String type, String title, String content, String picture) {
+		BBSResult<Object> result = new BBSResult<Object>();
+		User user = new User();
+		user.setId(userId);
 		Post post = new Post();
 		post.setId(BBSUtil.createId());
-		post.setUserName(userName);
 		post.setTitle(title);
 		post.setPicture(picture);
 		post.setContent(content);
@@ -66,6 +68,7 @@ public class PostServiceImpl implements PostService{
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		post.setCreateTime(time);
 		post.setLastReplyTime(time);
+		post.setUser(user);
 		postDao.add(post);
 		result.setStatus(0);
 		result.setMsg("发表帖子成功");
@@ -95,7 +98,7 @@ public class PostServiceImpl implements PostService{
 	public BBSResult<List<Post>> loadPostForHot() {
 		BBSResult<List<Post>> result = new BBSResult<List<Post>>();
 		List<Post> list = postDao.findForHot(0, 10); 
-		if(list == null){
+		if(list.size() == 0){
 			result.setMsg("热帖列表为空");
 			result.setStatus(1);
 			return result;

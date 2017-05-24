@@ -4,7 +4,6 @@
 <hibernate-mapping>
 	<class name="com.xust.bbs.entity.Post" table="post">
 		<id name="id" type="string" column="post_id"></id>
-		<property name="userName" type="string" column="user_name"></property>
 		<property name="title" type="string" column="post_title"></property>
 		<property name="content" type="string" column="post_content"></property>
 		<property name="picture" type="string" column="post_picture"></property>
@@ -15,5 +14,7 @@
 		<property name="createTime" type="timestamp" column="post_create_time"></property>
 		<property name="lastReplyTime" type="timestamp" column="post_last_reply_time"></property>
 		<property name="replyNumber" type="long" column="post_reply_number"></property>
+		<many-to-one name="user" column="user_id"
+		 class="com.xust.bbs.entity.User" not-null="false" lazy="false" fetch="join"></many-to-one>
 	</class>
 </hibernate-mapping>

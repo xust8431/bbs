@@ -8,7 +8,7 @@ public class Post implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
-	private String userName;
+	private String userId;
 	private String title;
 	private String content;
 	private String picture;
@@ -19,18 +19,14 @@ public class Post implements Serializable{
 	private String classify;
 	private Timestamp createTime;
 	private Timestamp lastReplyTime;
+	private User user;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -90,6 +86,18 @@ public class Post implements Serializable{
 	}
 	public void setLastReplyTime(Timestamp lastReplyTime) {
 		this.lastReplyTime = lastReplyTime;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

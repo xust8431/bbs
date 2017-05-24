@@ -88,18 +88,7 @@
 				//获取请求参数
 				var postId = $(this).data("postId");
 				//console.log(postId);
-				var xml = null;
-				if(window.XMLHttpRequest){
-					//非ie浏览器
-					xml = new XMLHttpRequest();
-				}else{
-					//ie浏览器
-					xml = new ActiveXObject(
-							"MicroSoft.XMLHttp");
-				}
-				//console.log("====");
-				xml.open("POST", path + "/reply/load.bbs?postId=" + postId, true);
-				xml.send(null);
+				window.location.href = path + "/reply/load.bbs?postId=" + postId;
         	});
         });
     </script>

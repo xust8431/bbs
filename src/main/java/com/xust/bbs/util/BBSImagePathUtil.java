@@ -17,7 +17,7 @@ public class BBSImagePathUtil {
 		FTPClient ftpClient = new FTPClient(); 
 		try { 
 			ftpClient.connect("127.0.0.1",2121); 
-			ftpClient.login("Wuyk", "weixiao"); 
+			ftpClient.login("Administrator", "backspace"); 
 			ftpClient.enterLocalPassiveMode();
 			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 			//设置上传目录 

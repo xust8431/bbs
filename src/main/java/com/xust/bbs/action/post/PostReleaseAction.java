@@ -22,7 +22,7 @@ import com.xust.bbs.util.BBSResult;
 public class PostReleaseAction {
 
 	//输入
-	private String userName;
+	private String userId;
 	private String title;
 	private String content;
 	private String type;
@@ -30,15 +30,15 @@ public class PostReleaseAction {
 	private String uploadFileName;
 	private String uploadContentType;
 	//输出
-	private BBSResult<Post> result;
+	private BBSResult<Object> result;
 	
 	@Resource
 	private PostService postService;
 	
 	public String execute() throws IOException{
 		String path = BBSImagePathUtil.getImagePath(upload, uploadFileName, uploadContentType);
-		System.out.println(path);
-		result = postService.releasePost(userName, type, title, content, path);
+		//System.out.println(path);
+		result = postService.releasePost(userId, type, title, content, path);
 		return "success";
 	}
 
@@ -66,12 +66,14 @@ public class PostReleaseAction {
 		this.uploadContentType = uploadContentType;
 	}
 
-	public String getUserName() {
-		return userName;
+	
+
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getTitle() {
@@ -90,11 +92,11 @@ public class PostReleaseAction {
 		this.content = content;
 	}
 
-	public BBSResult<Post> getResult() {
+	public BBSResult<Object> getResult() {
 		return result;
 	}
 
-	public void setResult(BBSResult<Post> result) {
+	public void setResult(BBSResult<Object> result) {
 		this.result = result;
 	}
 

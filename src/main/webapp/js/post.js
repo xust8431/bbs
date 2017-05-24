@@ -35,8 +35,9 @@ function typeListPost(offset,type){
 					var content = posts[i].content;
 					var up = posts[i].up;
 					var replyNumber = posts[i].replyNumber;
+					var userIcon = posts[i].user.icon;
 					//console.log(postId);
-					postList(postId,title,content,up,replyNumber,picture);
+					postList(postId,title,content,up,replyNumber,picture,userIcon);
 				}
 			}
 		},
@@ -49,7 +50,7 @@ function typeListPost(offset,type){
 function postMessage(){
 	var type = $("#select_type option:selected").val();
 	//console.log(type);
-	var userName = getCookie("userName");
+	var userId = getCookie("userId");
 	var title = $("#title").val().trim();
 	var content = $("#content").val().trim();
 	//console.log(title+"&&&"+content);
@@ -66,7 +67,7 @@ function postMessage(){
 	}
 	if(ok){
 		$.ajaxFileUpload({
-    		url:path+"/post/release.bbs"+"?type="+type+"&userName="+userName+"&title="+title+"&content="+content,
+    		url:path+"/post/release.bbs"+"?type="+type+"&userId="+userId+"&title="+title+"&content="+content,
     		type:"post",
     		secureuri:false,
     		fileElementId:"upload_file",
@@ -87,10 +88,10 @@ function postMessage(){
 	}
 }
 //拼接post列表
-function postList(postId,title,content,up,replyNumber,picture){
+function postList(postId,title,content,up,replyNumber,picture,userIcon){
 	var sli = "";
 	sli += '<li>';
-	sli += ' <img src="./img/hico02.gif" width="50" height="50" alt="">';
+	sli += ' <img src="'+userIcon+'" width="50" height="50" alt="">';
 	sli += ' <div class="main-ul-contant">';
 	sli += '   <h3><a href="#">'+title+'</a></h3>';
 	sli += '    <textarea rows="1">'+content+'</textarea>';

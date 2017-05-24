@@ -233,7 +233,7 @@
                         <img src="../img/huser01.gif" width="50" height="50" alt="">
                         <div class="main-ul-contant">
                             <h1>${result.data.title }</h1>
-                            <small style="margin-top:0px;font-size:12px;">发表于：${result.data.createTime } 作者：${result.data.userName }</small>
+                            <small style="margin-top:0px;font-size:12px;">发表于：${result.data.createTime } 作者：${result.data.user.name }</small>
                         </div>
                         <div class="tag-talk" title="顶" id="up-number"><span>&#xe904;</span> ${result.data.up }</div>
                         <div class="tag-talk" title="回复数" id="reply-number"><span>&#xe903;</span> ${result.data.replyNumber }</div>

@@ -9,7 +9,7 @@ public interface PostService {
 
 	public BBSResult<Integer> countPost(String type);
 	public BBSResult<List<Post>> loadPost(int offset);
-	public BBSResult<Post> releasePost(String userName,String type, String title, String content, String picture);
+	public BBSResult<Object> releasePost(String userId,String type, String title, String content, String picture);
 	public BBSResult<List<Post>> loadPostForType(int offset, String type);
 	public BBSResult<List<Post>> loadPostForHot();
 	/**
